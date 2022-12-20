@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Cron\DependencyInjection;
+namespace Dawid\CronBundle\DependencyInjection;
 
-use App\Core\Cron\CronJobRunner\Config\Config;
+use Dawid\CronBundle\CronJobRunner\Config\Config;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Cron\CronJobRunner\Config;
+namespace Dawid\CronBundle\CronJobRunner\Config;
 
 final class Config
 {

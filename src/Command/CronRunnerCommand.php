@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Cron\Command;
+namespace Dawid\CronBundle\Command;
 
-use App\Core\Cron\CronJobRunner\Cron;
+use Dawid\CronBundle\CronJobRunner\Cron;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\LockableTrait;

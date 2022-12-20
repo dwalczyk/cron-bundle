@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Cron\CronJobRunner;
+namespace Dawid\CronBundle\CronJobRunner;
 
-use App\Core\Cron\CronJobRunner\Config\Command;
+use Dawid\CronBundle\CronJobRunner\Config\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\KernelInterface;

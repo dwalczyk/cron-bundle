@@ -1,32 +1,32 @@
 services:
-  App\Core\Cron\CronJobRunner\Config\Config:
-    class: 'App\Core\Cron\CronJobRunner\Config\Config'
+  Dawid\CronBundle\CronJobRunner\Config\Config:
+    class: 'Dawid\CronBundle\CronJobRunner\Config\Config'
     public: false
     arguments:
       $commands: [ ]
 
-  App\Core\Cron\CronJobRunner\JobScheduler:
-    class: 'App\Core\Cron\CronJobRunner\JobScheduler'
+  Dawid\CronBundle\CronJobRunner\JobScheduler:
+    class: 'Dawid\CronBundle\CronJobRunner\JobScheduler'
     public: false
 
-  App\Core\Cron\CronJobRunner\CommandRunner:
-    class: 'App\Core\Cron\CronJobRunner\CommandRunner'
+  Dawid\CronBundle\CronJobRunner\CommandRunner:
+    class: 'Dawid\CronBundle\CronJobRunner\CommandRunner'
     public: false
     arguments:
       $kernel: '@kernel'
 
-  App\Core\Cron\CronJobRunner\Cron:
-    class: 'App\Core\Cron\CronJobRunner\Cron'
+  Dawid\CronBundle\CronJobRunner\Cron:
+    class: 'Dawid\CronBundle\CronJobRunner\Cron'
     public: false
     arguments:
-      $config: '@App\Core\Cron\CronJobRunner\Config\Config'
-      $commandRunner: '@App\Core\Cron\CronJobRunner\CommandRunner'
-      $jobScheduler: '@App\Core\Cron\CronJobRunner\JobScheduler'
+      $config: '@Dawid\CronBundle\CronJobRunner\Config\Config'
+      $commandRunner: '@Dawid\CronBundle\CronJobRunner\CommandRunner'
+      $jobScheduler: '@Dawid\CronBundle\CronJobRunner\JobScheduler'
 
-  App\Core\Cron\Command\CronRunnerCommand:
-    class: 'App\Core\Cron\Command\CronRunnerCommand'
+  Dawid\CronBundle\Command\CronRunnerCommand:
+    class: 'Dawid\CronBundle\Command\CronRunnerCommand'
     tags:
       - { name: 'console.command', command: 'cron:run' }
     arguments:
-      $runner: '@App\Core\Cron\CronJobRunner\Cron'
+      $runner: '@Dawid\CronBundle\CronJobRunner\Cron'
       $logger: '@logger'

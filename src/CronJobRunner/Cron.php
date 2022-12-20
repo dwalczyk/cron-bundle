@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Cron\CronJobRunner;
+namespace Dawid\CronBundle\CronJobRunner;
 
-use App\Core\Cron\CronJobRunner\Config\Config;
+use Dawid\CronBundle\CronJobRunner\Config\Config;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class Cron

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Cron\CronJobRunner;
+namespace Dawid\CronBundle\CronJobRunner;
 
 final class JobScheduler
 {
