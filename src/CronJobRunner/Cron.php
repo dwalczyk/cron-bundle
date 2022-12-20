@@ -19,7 +19,10 @@ final class Cron
     public function run(OutputInterface $output): void
     {
         foreach ($this->config->getPreparedCommands() as $command) {
-            $this->commandRunner->run($command, $output);
+
+            if ($this->jobScheduler->isAllowed($command, $output)) {
+                $this->commandRunner->run($command, $output);
+            }
         }
     }
 }

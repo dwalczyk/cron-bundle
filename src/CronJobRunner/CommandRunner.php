@@ -26,11 +26,6 @@ final class CommandRunner
         $output->writeln('');
         $output->writeln(sprintf('<bg=yellow;options=bold>%s</>', $command->name));
 
-        if (!$command->enabled) {
-            $output->writeln(sprintf('<comment>Command %s is not enabled. Skipped.</comment>', $command->name));
-            return;
-        }
-
         $arguments = [];
         foreach ($command->arguments as $argument) {
             $arguments[$argument->name] = $argument->value;
