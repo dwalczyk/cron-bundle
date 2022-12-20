@@ -3,13 +3,14 @@
 namespace Dawid\CronBundle\CronJobRunner;
 
 use Cron\CronExpression;
-use Dawid\CronBundle\CronJobRunner\Config\Command;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class JobScheduler
 {
-    public function isAllowed(Command $command, OutputInterface $output): bool
+    public function isAllowed(CronJobInterface $cronJob, OutputInterface $output): bool
     {
+        return true;
+
         if (!CronExpression::isValidExpression($command->cronExpr)) {
             $output->writeln(sprintf('<error>[%s] "%s" is not a valid crontab expression - cannot run</error>',
                 $command->name, $command->cronExpr), OutputInterface::VERBOSITY_QUIET);

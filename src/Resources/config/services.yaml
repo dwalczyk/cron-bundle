@@ -31,14 +31,13 @@ services:
       $runner: '@Dawid\CronBundle\CronJobRunner\Cron'
       $logger: '@logger'
 
-
   Dawid\CronBundle\CronJobRunner\CronJobRegistry:
     class: 'Dawid\CronBundle\CronJobRunner\CronJobRegistry'
     arguments:
       - !tagged_iterator { tag: 'cron.job' }
 
   Dawid\CronBundle\CronJobRunner\CronJobRegistryInterface:
-    class: 'Dawid\CronBundle\CronJobRunner\CronJobRegistry'
+    class: '@Dawid\CronBundle\CronJobRunner\CronJobRegistry'
 
   Dawid\CronBundle\CronJobRunnerInterface:
     tags: [ 'cron.job' ]
