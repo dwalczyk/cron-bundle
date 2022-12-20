@@ -29,6 +29,16 @@ final class JobScheduler
             return false;
         }
 
+        if (!$command->enabled || !$exprInterpreter->isDue()) {
+            $output->writeln(sprintf('%s will be skipped [%s] [enabled: %s]',
+                $command->name,
+                $command->cronExpr,
+                $command->enabled ? 'true' : 'false'
+            ));
+
+            return false;
+        }
+
         $output->writeln(sprintf('%s will run [%s]',
             $command->name,
             $command->cronExpr
