@@ -12,7 +12,6 @@ final class Command
      * @param CommandOption[] $multiValueOptions
      */
     public function __construct(
-        public readonly string $id,
         public readonly string $name,
         public readonly string $cronExpr,
         public readonly array $arguments,

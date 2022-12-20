@@ -13,12 +13,12 @@ final class Config
 
     public function getPreparedCommands(): array
     {
-        return \array_map(function(string $name, array $command) {
-            return $this->prepareCommand($name, $command);
+        return \array_map(function(array $command) {
+            return $this->prepareCommand($command);
         }, $this->commands);
     }
 
-    private function prepareCommand(string $id, array $array): Command
+    private function prepareCommand(array $array): Command
     {
         $args = $opts = $multiVOpts = [];
 
@@ -34,6 +34,6 @@ final class Config
             $multiVOpts[] = new CommandOption($name, $value);
         }
 
-        return new Command($id, $array['name'], $array['cron_expression'], $args, $opts, $multiVOpts, $array['enabled']);
+        return new Command($array['name'], $array['cron_expression'], $args, $opts, $multiVOpts, $array['enabled']);
     }
 }
