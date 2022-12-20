@@ -24,10 +24,10 @@ final class CommandRunner
     ): void
     {
         $output->writeln('');
-        $output->writeln(sprintf('<bg=yellow;options=bold>%s</>', $command->name));
+        $output->writeln(sprintf('<bg=yellow;options=bold>%s (%s)</>', $command->id, $command->name));
 
         if (!$command->enabled) {
-            $output->writeln(sprintf('<comment>Command "%s" is not enabled. Skipped.</comment>', $command->name));
+            $output->writeln(sprintf('<comment>Command %s (%s) is not enabled. Skipped.</comment>', $command->id, $command->name));
             return;
         }
 
