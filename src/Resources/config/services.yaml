@@ -4,14 +4,6 @@ services:
     class: 'Dawid\CronBundle\CronJobRunner\JobScheduler'
     public: false
 
-  Dawid\CronBundle\Command\CronRunnerCommand:
-    class: 'Dawid\CronBundle\Command\CronRunnerCommand'
-    tags:
-      - { name: 'console.command', command: 'cron:run' }
-    arguments:
-      $runner: '@Dawid\CronBundle\CronJobRunner\Cron'
-      $logger: '@logger'
-
   Dawid\CronBundle\CronJobRunner\CronJobRegistry:
     class: 'Dawid\CronBundle\CronJobRunner\CronJobRegistry'
     arguments:
@@ -25,5 +17,13 @@ services:
     arguments:
       $jobScheduler: '@Dawid\CronBundle\CronJobRunner\CronJobRegistryInterface'
 
-  Dawid\CronBundle\CronJobRunnerInterface:
+  Dawid\CronBundle\Command\CronRunnerCommand:
+    class: 'Dawid\CronBundle\Command\CronRunnerCommand'
+    tags:
+      - { name: 'console.command', command: 'cron:run' }
+    arguments:
+      $runner: '@Dawid\CronBundle\CronJobRunner\Cron'
+      $logger: '@logger'
+
+  Dawid\CronBundle\CronJobInterface:
     tags: [ 'cron.job' ]
