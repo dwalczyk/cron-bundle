@@ -23,8 +23,6 @@ final class CronJobRegistry implements CronJobRegistryInterface
 
     public function all(): iterable
     {
-        print_r($this->jobs);
-
-        return [];
+        return $this->jobs;
     }
 }
