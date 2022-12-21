@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dawid\CronBundle\CronJobRunner;
+namespace Dawid\CronBundle;
 
 use Symfony\Component\Console\Output\OutputInterface;
 

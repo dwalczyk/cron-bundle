@@ -1,28 +1,28 @@
 services:
 
-  Dawid\CronBundle\CronJobRunner\JobScheduler:
-    class: 'Dawid\CronBundle\CronJobRunner\JobScheduler'
+  Dawid\CronBundle\JobScheduler:
+    class: 'Dawid\CronBundle\JobScheduler'
     public: false
 
-  Dawid\CronBundle\CronJobRunner\CronJobRegistry:
-    class: 'Dawid\CronBundle\CronJobRunner\CronJobRegistry'
+  Dawid\CronBundle\CronJobRegistry:
+    class: 'Dawid\CronBundle\CronJobRegistry'
     arguments:
       - !tagged_iterator { tag: 'cron.job' }
 
-  Dawid\CronBundle\CronJobRunner\CronJobRegistryInterface: '@Dawid\CronBundle\CronJobRunner\CronJobRegistry'
+  Dawid\CronBundle\CronJobRegistryInterface: '@Dawid\CronBundle\CronJobRegistry'
 
-  Dawid\CronBundle\CronJobRunner\Cron:
-    class: 'Dawid\CronBundle\CronJobRunner\Cron'
+  Dawid\CronBundle\Cron:
+    class: 'Dawid\CronBundle\Cron'
     public: false
     arguments:
-      $jobScheduler: '@Dawid\CronBundle\CronJobRunner\CronJobRegistryInterface'
+      $jobScheduler: '@Dawid\CronBundle\CronJobRegistryInterface'
 
   Dawid\CronBundle\Command\CronRunnerCommand:
     class: 'Dawid\CronBundle\Command\CronRunnerCommand'
     tags:
       - { name: 'console.command', command: 'cron:run' }
     arguments:
-      $runner: '@Dawid\CronBundle\CronJobRunner\Cron'
+      $runner: '@Dawid\CronBundle\Cron'
       $logger: '@logger'
 
   Dawid\CronBundle\CronJobInterface:

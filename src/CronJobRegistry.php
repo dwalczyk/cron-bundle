@@ -1,6 +1,6 @@
 <?php
 
-namespace Dawid\CronBundle\CronJobRunner;
+namespace Dawid\CronBundle;
 
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 

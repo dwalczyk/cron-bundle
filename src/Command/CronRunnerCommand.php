@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dawid\CronBundle\Command;
 
-use Dawid\CronBundle\CronJobRunner\Cron;
+use Dawid\CronBundle\Cron;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\LockableTrait;
