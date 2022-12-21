@@ -24,6 +24,3 @@ services:
     arguments:
       $runner: '@Dawid\CronBundle\Cron'
       $logger: '@logger'
-
-  Dawid\CronBundle\CronJobInterface:
-    tags: [ 'cron.job' ]
