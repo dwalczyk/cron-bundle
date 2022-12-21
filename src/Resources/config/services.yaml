@@ -1,9 +1,4 @@
 services:
-  Dawid\CronBundle\CronJobRunner\Config\Config:
-    class: 'Dawid\CronBundle\CronJobRunner\Config\Config'
-    public: false
-    arguments:
-      $commands: [ ]
 
   Dawid\CronBundle\CronJobRunner\JobScheduler:
     class: 'Dawid\CronBundle\CronJobRunner\JobScheduler'
@@ -19,7 +14,6 @@ services:
     class: 'Dawid\CronBundle\CronJobRunner\Cron'
     public: false
     arguments:
-      $config: '@Dawid\CronBundle\CronJobRunner\Config\Config'
       $commandRunner: '@Dawid\CronBundle\CronJobRunner\CommandRunner'
       $jobScheduler: '@Dawid\CronBundle\CronJobRunner\JobScheduler'
 
