@@ -2,15 +2,11 @@
 
 namespace Dawid\CronBundle;
 
-use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
-
 final class CronJobRegistry implements CronJobRegistryInterface
 {
     private readonly array $jobs;
 
-    public function __construct(
-        #[TaggedIterator('cron.job')] iterable $jobs
-    )
+    public function __construct(iterable $jobs)
     {
         $arrayJobs = [];
 

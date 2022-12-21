@@ -17,8 +17,6 @@ final class CronPass implements CompilerPassInterface
 
     private function processJobs(ContainerBuilder $container): void
     {
-        $container->registerForAutoconfiguration(CronJobInterface::class)->addTag('cron.job');
-
         $definition = $container->findDefinition(CronJobRegistry::class);
 
         $taggedServices = $container->findTaggedServiceIds('cron.job');
