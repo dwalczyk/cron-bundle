@@ -13,8 +13,8 @@ final class Cron
     )
     {}
 
-    public function run(OutputInterface $output): void
+    public function run(OutputInterface $output): ?int
     {
-        var_dump($this->passedJobsInterfaceRepository->getDateTimeOfLastPassedJobByName('xxx')?->getTimestamp());
+        return $this->passedJobsInterfaceRepository->getDateTimeOfLastPassedJobByName('xxx')?->getTimestamp();
     }
 }
