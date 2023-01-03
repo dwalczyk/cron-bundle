@@ -11,11 +11,18 @@ services:
 
   Dawid\CronBundle\CronJobRegistryInterface: '@Dawid\CronBundle\CronJobRegistry'
 
+  cron_doctrine_passed_jobs_repository:
+    class: 'Dawid\CronBundle\Extension\Doctrine\DoctrinePassedJobsRepository'
+    arguments:
+      $em: '@doctrine.orm.entity_manager'
+
+  Dawid\CronBundle\PassedJobsInterfaceRepository: '@cron_doctrine_passed_jobs_repository'
+
   Dawid\CronBundle\Cron:
     class: 'Dawid\CronBundle\Cron'
     public: false
     arguments:
-      $jobScheduler: '@Dawid\CronBundle\CronJobRegistryInterface'
+      $passedJobsInterfaceRepository: '@Dawid\CronBundle\PassedJobsInterfaceRepository'
 
   Dawid\CronBundle\Command\CronRunnerCommand:
     class: 'Dawid\CronBundle\Command\CronRunnerCommand'

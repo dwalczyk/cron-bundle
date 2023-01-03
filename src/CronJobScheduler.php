@@ -5,7 +5,7 @@ namespace Dawid\CronBundle;
 use Cron\CronExpression;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class JobScheduler
+final class CronJobScheduler
 {
     public function isAllowed(CronJobInterface $cronJob, OutputInterface $output): bool
     {

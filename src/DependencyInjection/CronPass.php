@@ -2,7 +2,6 @@
 
 namespace Dawid\CronBundle\DependencyInjection;
 
-use Dawid\CronBundle\CronJobInterface;
 use Dawid\CronBundle\CronJobRegistry;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

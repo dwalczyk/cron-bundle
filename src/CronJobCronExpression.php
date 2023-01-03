@@ -2,7 +2,7 @@
 
 namespace Dawid\CronBundle;
 
-final class CrobJobCronExpression
+final class CronJobCronExpression
 {
     public function __construct(
         public readonly string $expression

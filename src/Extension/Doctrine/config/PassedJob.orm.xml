@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Dawid\CronBundle\PassedJob" table="cron_passedJob">
+        <id name="id" type="uuid" column="id"/>
+        <field name="name" column="name"/>
+        <field name="result" column="result"/>
+        <field name="passedAt" type="datetime_immutable" column="passed_at"/>
+    </entity>
+</doctrine-mapping>

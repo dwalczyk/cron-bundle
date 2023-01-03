@@ -9,15 +9,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class Cron
 {
     public function __construct(
-        private readonly JobScheduler $jobScheduler,
-        private readonly CronJobRegistryInterface $registry,
+        private readonly PassedJobsInterfaceRepository $passedJobsInterfaceRepository
     )
     {}
 
     public function run(OutputInterface $output): void
     {
-        foreach ($this->registry->all() as $job) {
-
-        }
+        print_r($this->passedJobsInterfaceRepository->getDateTimeOfLastPassedJobByName('xxx')->getTimestamp());
     }
 }

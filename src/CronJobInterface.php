@@ -6,10 +6,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 interface CronJobInterface
 {
-    public function run(OutputInterface $output): void;
+    public function run(OutputInterface $output): CronJobResult;
 
     /**
-     * @return CrobJobCronExpression[]
+     * @return CronJobCronExpression[]
      */
     public function getCronExpressions(): iterable;
 }
