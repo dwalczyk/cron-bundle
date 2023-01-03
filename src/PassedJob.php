@@ -11,13 +11,13 @@ final class PassedJob
 
     private string $name;
 
-    private string $result;
+    private PassedJobResultEnum $result;
 
     private \DateTimeImmutable $passedAt;
 
     public function __construct(
         string $name,
-        string $result
+        PassedJobResultEnum $result
     )
     {
         $this->id = Uuid::uuid4();
@@ -36,7 +36,7 @@ final class PassedJob
         return $this->name;
     }
 
-    public function getResult(): string
+    public function getResult(): PassedJobResultEnum
     {
         return $this->result;
     }

@@ -5,7 +5,7 @@
     <entity name="Dawid\CronBundle\PassedJob" table="cron_passedJob">
         <id name="id" type="uuid" column="id"/>
         <field name="name" column="name"/>
-        <field name="result" column="result"/>
+        <field name="result" column="result" enum-type="Dawid\CronBundle\PassedJobResultEnum"/>
         <field name="passedAt" type="datetime_immutable" column="passed_at"/>
     </entity>
 </doctrine-mapping>
