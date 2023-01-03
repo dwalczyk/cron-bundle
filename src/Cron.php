@@ -15,6 +15,6 @@ final class Cron
 
     public function run(OutputInterface $output): void
     {
-        print_r($this->passedJobsInterfaceRepository->getDateTimeOfLastPassedJobByName('xxx')->getTimestamp());
+        var_dump($this->passedJobsInterfaceRepository->getDateTimeOfLastPassedJobByName('xxx')?->getTimestamp());
     }
 }
