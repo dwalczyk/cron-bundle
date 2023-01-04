@@ -2,7 +2,7 @@
 
 namespace Dawid\CronBundle;
 
-interface PassedJobsInterfaceRepository
+interface PassedJobsRepositoryInterface
 {
     public function getDateTimeOfLastPassedJobByName(string $name): ?\DateTimeInterface;
 }

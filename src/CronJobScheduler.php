@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class CronJobScheduler
 {
-    public function __construct(private readonly PassedJobsInterfaceRepository $passedJobsInterfaceRepository)
+    public function __construct(private readonly PassedJobsRepositoryInterface $passedJobsRepository)
     {
     }
 

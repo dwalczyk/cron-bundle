@@ -3,11 +3,11 @@
 namespace Dawid\CronBundle\Extension\Doctrine;
 
 use Dawid\CronBundle\PassedJob;
-use Dawid\CronBundle\PassedJobsInterfaceRepository;
+use Dawid\CronBundle\PassedJobsRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
 
-class DoctrinePassedJobsRepository implements PassedJobsInterfaceRepository
+class DoctrinePassedJobsRepository implements PassedJobsRepositoryInterface
 {
     private readonly ObjectRepository $repository;
 
