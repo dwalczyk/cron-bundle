@@ -11,8 +11,8 @@ services:
 
   Dawid\CronBundle\CronJobRegistryInterface: '@cron_doctrine_passed_jobs_repository'
 
-  Dawid\CronBundle\JobScheduler:
-    class: 'Dawid\CronBundle\JobScheduler'
+  Dawid\CronBundle\CronJobScheduler:
+    class: 'Dawid\CronBundle\CronJobScheduler'
     public: false
     arguments:
       $passedJobsRepository: '@Dawid\CronBundle\CronJobRegistryInterface'
@@ -21,7 +21,7 @@ services:
     class: 'Dawid\CronBundle\Cron'
     public: false
     arguments:
-      $scheduler: '@Dawid\CronBundle\JobScheduler'
+      $scheduler: '@Dawid\CronBundle\CronJobScheduler'
       $registry: '@Dawid\CronBundle\CronJobRegistry'
 
   Dawid\CronBundle\Command\CronRunnerCommand:
