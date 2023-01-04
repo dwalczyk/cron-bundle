@@ -13,16 +13,24 @@ final class PassedJob
 
     private PassedJobResultEnum $result;
 
+    private string $cronExpression;
+
+    private \DateTimeImmutable $cronDate;
+
     private \DateTimeImmutable $passedAt;
 
     public function __construct(
         string $name,
-        PassedJobResultEnum $result
+        PassedJobResultEnum $result,
+        string $cronExpression,
+        \DateTimeImmutable $cronDate
     )
     {
         $this->id = Uuid::uuid4();
         $this->name = $name;
         $this->result = $result;
+        $this->cronExpression = $cronExpression;
+        $this->cronDate = $cronDate;
         $this->passedAt = new \DateTimeImmutable();
     }
 
@@ -39,6 +47,16 @@ final class PassedJob
     public function getResult(): PassedJobResultEnum
     {
         return $this->result;
+    }
+
+    public function getCronExpression(): string
+    {
+        return $this->cronExpression;
+    }
+
+    public function getCronDate(): \DateTimeImmutable
+    {
+        return $this->cronDate;
     }
 
     public function getPassedAt(): \DateTimeImmutable

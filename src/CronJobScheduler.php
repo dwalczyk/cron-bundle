@@ -7,43 +7,39 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class CronJobScheduler
 {
-    public function isAllowed(CronJobInterface $cronJob, OutputInterface $output): bool
+    public function __construct(private readonly PassedJobsInterfaceRepository $passedJobsInterfaceRepository)
     {
-        return true;
+    }
 
-        if (!CronExpression::isValidExpression($command->cronExpr)) {
-            $output->writeln(sprintf('<error>[%s] "%s" is not a valid crontab expression - cannot run</error>',
-                $command->name, $command->cronExpr), OutputInterface::VERBOSITY_QUIET);
+    public function isAllowed(CronJobInterface $job, OutputInterface $output): bool
+    {
+        foreach ($job->getCronExpressions() as $cronExpression) {
+            if (!CronExpression::isValidExpression($cronExpression)) {
+                $output->writeln(sprintf('<error>[%s] "%s" is not a valid crontab expression - cannot run</error>',
+                    $job->getName(), $cronExpression), OutputInterface::VERBOSITY_QUIET);
 
-            return false;
-        }
+                return false;
+            }
 
-        $exprInterpreter = new CronExpression($command->cronExpr);
+            $exprInterpreter = new CronExpression($cronExpression);
 
-        if (!$command->enabled || !$exprInterpreter->isDue()) {
-            $output->writeln(sprintf('%s will be skipped [%s] [enabled: %s]',
-                $command->name,
-                $command->cronExpr,
-                $command->enabled ? 'true' : 'false'
+            dump($exprInterpreter->getPreviousRunDate());
+            dump($exprInterpreter->getNextRunDate());
+
+            if (!$exprInterpreter->isDue()) {
+                $output->writeln(sprintf('%s will be skipped [%s]',
+                    $job->getName(),
+                    $cronExpression,
+                ));
+
+                return false;
+            }
+
+            $output->writeln(sprintf('%s will run [%s]',
+                $job->getName(),
+                $cronExpression
             ));
-
-            return false;
         }
-
-        if (!$command->enabled || !$exprInterpreter->isDue()) {
-            $output->writeln(sprintf('%s will be skipped [%s] [enabled: %s]',
-                $command->name,
-                $command->cronExpr,
-                $command->enabled ? 'true' : 'false'
-            ));
-
-            return false;
-        }
-
-        $output->writeln(sprintf('%s will run [%s]',
-            $command->name,
-            $command->cronExpr
-        ));
 
         return true;
     }

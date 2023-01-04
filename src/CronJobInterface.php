@@ -12,4 +12,6 @@ interface CronJobInterface
      * @return CronJobCronExpression[]
      */
     public function getCronExpressions(): iterable;
+
+    public function getName(): string;
 }

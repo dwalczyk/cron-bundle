@@ -9,12 +9,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class Cron
 {
     public function __construct(
-        private readonly PassedJobsInterfaceRepository $passedJobsInterfaceRepository
+        private readonly CronJobScheduler              $jobScheduler,
+        private readonly CronJobRegistryInterface      $registry,
     )
     {}
 
-    public function run(OutputInterface $output): ?int
+    public function run(OutputInterface $output): void
     {
-        return $this->passedJobsInterfaceRepository->getDateTimeOfLastPassedJobByName('xxx')?->getTimestamp();
+        foreach ($this->registry->all() as $job) {
+            if ($this->jobScheduler->isAllowed($job, $output)) {
+
+            }
+        }
     }
 }
