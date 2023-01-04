@@ -25,6 +25,7 @@ final class CronJobScheduler
 
             dump($exprInterpreter->getPreviousRunDate());
             dump($exprInterpreter->getNextRunDate());
+            dump($exprInterpreter->getNextRunDate(allowCurrentDate: true));
 
             if (!$exprInterpreter->isDue()) {
                 $output->writeln(sprintf('%s will be skipped [%s]',
