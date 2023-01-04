@@ -1,30 +1,28 @@
 services:
-  cron_job_registry:
+  Dawid\CronBundle\CronJobRegistry:
     class: 'Dawid\CronBundle\CronJobRegistry'
     arguments:
       - !tagged_iterator { tag: 'cron.job' }
-
-  Dawid\CronBundle\CronJobRegistryInterface: '@cron_job_registry'
 
   cron_doctrine_passed_jobs_repository:
     class: 'Dawid\CronBundle\Extension\Doctrine\DoctrinePassedJobsRepository'
     arguments:
       $em: '@doctrine.orm.entity_manager'
 
-  cron_passed_jobs_repository: '@cron_doctrine_passed_jobs_repository'
+  Dawid\CronBundle\CronJobRegistryInterface: '@cron_doctrine_passed_jobs_repository'
 
-  cron_job_scheduler:
+  Dawid\CronBundle\JobScheduler:
     class: 'Dawid\CronBundle\JobScheduler'
     public: false
     arguments:
-      $passedJobsRepository: '@cron_passed_jobs_repository'
+      $passedJobsRepository: '@Dawid\CronBundle\CronJobRegistryInterface'
 
   Dawid\CronBundle\Cron:
     class: 'Dawid\CronBundle\Cron'
     public: false
     arguments:
-      $scheduler: '@cron_job_scheduler'
-      $registry: '@cron_job_registry'
+      $scheduler: '@Dawid\CronBundle\JobScheduler'
+      $registry: '@Dawid\CronBundle\CronJobRegistry'
 
   Dawid\CronBundle\Command\CronRunnerCommand:
     class: 'Dawid\CronBundle\Command\CronRunnerCommand'
