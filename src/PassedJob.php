@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dawid\CronBundle;
 
 use Ramsey\Uuid\Uuid;
@@ -18,11 +20,10 @@ final class PassedJob
     private \DateTimeImmutable $passedAt;
 
     public function __construct(
-        string                 $name,
+        string $name,
         CronJobResultStateEnum $state,
-        string                 $cronExpression
-    )
-    {
+        string $cronExpression
+    ) {
         $this->id = Uuid::uuid4();
         $this->name = $name;
         $this->state = $state;

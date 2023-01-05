@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dawid\CronBundle\Extension\Doctrine;
 
 use Dawid\CronBundle\PassedJob;

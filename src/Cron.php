@@ -9,12 +9,12 @@ use Psr\Log\LoggerInterface;
 final class Cron
 {
     public function __construct(
-        private readonly CronJobScheduler              $scheduler,
-        private readonly CronJobRegistryInterface      $registry,
+        private readonly CronJobScheduler $scheduler,
+        private readonly CronJobRegistryInterface $registry,
         private readonly PassedJobsRepositoryInterface $passedJobsRepository,
-        private readonly LoggerInterface               $logger
-    )
-    {}
+        private readonly LoggerInterface $logger
+    ) {
+    }
 
     public function run(): void
     {
@@ -34,13 +34,13 @@ final class Cron
                 $state = CronJobResultStateEnum::SUCCESS;
 
                 $this->logger->info(
-                    sprintf('Job "%s" [%s] executed successfully.', $job->getName(), $cronExpression->expression)
+                    \sprintf('Job "%s" [%s] executed successfully.', $job->getName(), $cronExpression->expression)
                 );
             } catch (\Throwable $e) {
                 $state = CronJobResultStateEnum::FAILED;
 
                 $this->logger->error(
-                    sprintf('Job "%s" [%s] failed. Exception: %s', $job->getName(), $cronExpression->expression, $e->getMessage())
+                    \sprintf('Job "%s" [%s] failed. Exception: %s', $job->getName(), $cronExpression->expression, $e->getMessage())
                 );
             }
 

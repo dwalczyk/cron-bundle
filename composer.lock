@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f97f72b40f3673e84cd3a62a0e03bf8a",
+    "content-hash": "6be9f581fd4588f86255432ad28226b7",
     "packages": [
         {
             "name": "brick/math",
@@ -1897,12 +1897,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "d7ae88b09a5fdfc42e679cfe4b3ac824b857065b"
+                "reference": "b2dfe5b435a67cda9256c1682e5e21f62a9f164b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/d7ae88b09a5fdfc42e679cfe4b3ac824b857065b",
-                "reference": "d7ae88b09a5fdfc42e679cfe4b3ac824b857065b",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/b2dfe5b435a67cda9256c1682e5e21f62a9f164b",
+                "reference": "b2dfe5b435a67cda9256c1682e5e21f62a9f164b",
                 "shasum": ""
             },
             "require": {
@@ -1976,7 +1976,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-12-29T13:34:15+00:00"
+            "time": "2023-01-05T06:34:28+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -2569,12 +2569,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "5018a632c53587f68a2071bf53219b28532595ca"
+                "reference": "aaec42a988d601ed9b7490ab7cd5d8c308d6849c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/5018a632c53587f68a2071bf53219b28532595ca",
-                "reference": "5018a632c53587f68a2071bf53219b28532595ca",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/aaec42a988d601ed9b7490ab7cd5d8c308d6849c",
+                "reference": "aaec42a988d601ed9b7490ab7cd5d8c308d6849c",
                 "shasum": ""
             },
             "require": {
@@ -2641,7 +2641,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-12-29T13:44:53+00:00"
+            "time": "2023-01-05T06:36:11+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -2649,12 +2649,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "72121a3fb3b61b70ef652f09c03edeffd3aff9c1"
+                "reference": "93bd20d59855011c8fb434da8633653ab944ac8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/72121a3fb3b61b70ef652f09c03edeffd3aff9c1",
-                "reference": "72121a3fb3b61b70ef652f09c03edeffd3aff9c1",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/93bd20d59855011c8fb434da8633653ab944ac8a",
+                "reference": "93bd20d59855011c8fb434da8633653ab944ac8a",
                 "shasum": ""
             },
             "require": {
@@ -2755,7 +2755,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-01T08:38:37+00:00"
+            "time": "2023-01-05T06:42:42+00:00"
         },
         {
             "name": "symfony/lock",
@@ -3959,12 +3959,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "707c8319713a4980420fe69662fd9b7d6c0fbd24"
+                "reference": "a63c09de1ea1a58985a9af0970f438e2b1b2e59c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/707c8319713a4980420fe69662fd9b7d6c0fbd24",
-                "reference": "707c8319713a4980420fe69662fd9b7d6c0fbd24",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a63c09de1ea1a58985a9af0970f438e2b1b2e59c",
+                "reference": "a63c09de1ea1a58985a9af0970f438e2b1b2e59c",
                 "shasum": ""
             },
             "require": {
@@ -4011,7 +4011,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-04T18:29:11+00:00"
+            "time": "2023-01-05T08:55:39+00:00"
         },
         {
             "name": "phpstan/phpstan-doctrine",
@@ -4019,12 +4019,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-doctrine.git",
-                "reference": "ec49b7ab2efc2c1443746b42a9440c0f1d21db2e"
+                "reference": "4967ebbc24a2d7e94f5b2f6dad78e0087dd52fc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/ec49b7ab2efc2c1443746b42a9440c0f1d21db2e",
-                "reference": "ec49b7ab2efc2c1443746b42a9440c0f1d21db2e",
+                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/4967ebbc24a2d7e94f5b2f6dad78e0087dd52fc3",
+                "reference": "4967ebbc24a2d7e94f5b2f6dad78e0087dd52fc3",
                 "shasum": ""
             },
             "require": {
@@ -4079,9 +4079,9 @@
             "description": "Doctrine extensions for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-doctrine/issues",
-                "source": "https://github.com/phpstan/phpstan-doctrine/tree/1.3.x"
+                "source": "https://github.com/phpstan/phpstan-doctrine/tree/1.3.29"
             },
-            "time": "2023-01-04T13:28:01+00:00"
+            "time": "2023-01-04T21:51:32+00:00"
         },
         {
             "name": "phpstan/phpstan-symfony",
@@ -4209,9 +4209,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "phpstan/phpstan": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
