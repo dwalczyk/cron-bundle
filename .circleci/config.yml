@@ -34,4 +34,6 @@ jobs:
           command: php composer.phar phpstan
       - run:
           name: CSFIXER
-          command: php composer.phar csfixer
+          command: |
+            composer install --working-dir=tools/php-cs-fixer
+            php composer.phar csfixer
