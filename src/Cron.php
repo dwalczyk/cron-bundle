@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dawid\CronBundle;
 
 use Psr\Log\LoggerInterface;
+use Webmozart\Assert\Assert;
 
 final class Cron
 {
@@ -27,6 +28,8 @@ final class Cron
     {
         foreach ($job->getCronExpressions() as $cronExpression) {
             try {
+                Assert::isInstanceOf($cronExpression, CronExpression::class);
+
                 if ($this->scheduler->isAllowed($job->getName(), $cronExpression)) {
                     $job->run();
                 }

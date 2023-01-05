@@ -9,7 +9,8 @@
         "symfony/console": "~4.0|~5.0|~6.0",
         "symfony/lock": "~4.0|~5.0|~6.0",
         "doctrine/orm": "^2.0",
-        "ramsey/uuid-doctrine": "^1.0"
+        "ramsey/uuid-doctrine": "^1.0",
+        "webmozart/assert": "^1.11"
     },
     "license": "MIT",
     "autoload": {
