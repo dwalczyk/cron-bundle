@@ -30,7 +30,7 @@ final class Cron
             try {
                 if (!$this->scheduler->isAllowed($job->getName(), $cronExpression)) {
                     $msg = \sprintf('Job "%s" [%s] not allowed by scheduler - skipped.', $job->getName(), $cronExpression->expression);
-                    $output->writeln(sprintf('<comment>%s</comment>', $msg));
+                    $output->writeln(\sprintf('<comment>%s</comment>', $msg));
 
                     continue;
                 }
@@ -41,8 +41,7 @@ final class Cron
                 $msg = \sprintf('Job "%s" [%s] executed successfully.', $job->getName(), $cronExpression->expression);
 
                 $this->logger->info($msg);
-                $output->writeln(sprintf('<info>%s</info>', $msg));
-
+                $output->writeln(\sprintf('<info>%s</info>', $msg));
             } catch (\Throwable $e) {
                 $state = CronJobResultStateEnum::FAILED;
                 $msg = \sprintf(
@@ -53,7 +52,7 @@ final class Cron
                 );
 
                 $this->logger->error($msg);
-                $output->writeln(sprintf('<error>%s</error>', $msg));
+                $output->writeln(\sprintf('<error>%s</error>', $msg));
             }
 
             $passedJob = new PassedJob($job->getName(), $state, $cronExpression->expression);
