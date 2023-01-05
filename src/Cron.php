@@ -17,18 +17,18 @@ final class Cron
     ) {
     }
 
-    public function run(OutputInterface $output): void
+    public function run(\DateTimeInterface $dateTime, OutputInterface $output): void
     {
         foreach ($this->registry->all() as $job) {
-            $this->handleJob($job, $output);
+            $this->handleJob($job, $dateTime, $output);
         }
     }
 
-    private function handleJob(CronJobInterface $job, OutputInterface $output): void
+    private function handleJob(CronJobInterface $job, \DateTimeInterface $dateTime, OutputInterface $output): void
     {
         foreach ($job->getCronExpressions() as $cronExpression) {
             try {
-                if (!$this->scheduler->isAllowed($job->getName(), $cronExpression)) {
+                if (!$this->scheduler->isAllowed($job->getName(), $cronExpression, $dateTime)) {
                     $msg = \sprintf('Job "%s" [%s] not allowed by scheduler - skipped.', $job->getName(), $cronExpression->expression);
                     $output->writeln(\sprintf('<comment>%s</comment>', $msg));
 
@@ -55,7 +55,12 @@ final class Cron
                 $output->writeln(\sprintf('<error>%s</error>', $msg));
             }
 
-            $passedJob = new PassedJob($job->getName(), $state, $cronExpression->expression);
+            $passedJob = new PassedJob(
+                $job->getName(),
+                $state,
+                $cronExpression->expression,
+                \DateTimeImmutable::createFromInterface($dateTime)
+            );
             $this->passedJobsRepository->save($passedJob);
         }
     }

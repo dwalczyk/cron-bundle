@@ -14,7 +14,7 @@ final class CronJobScheduler
     ) {
     }
 
-    public function isAllowed(string $jobName, CronExpression $jobCronExpression): bool
+    public function isAllowed(string $jobName, CronExpression $jobCronExpression, \DateTimeInterface $dateTime): bool
     {
         if (!CronExpressionLib::isValidExpression($jobCronExpression->expression)) {
             $this->logger->error(\sprintf(
@@ -28,7 +28,7 @@ final class CronJobScheduler
 
         $exprInterpreter = new CronExpressionLib($jobCronExpression->expression);
 
-        if (!$exprInterpreter->isDue()) {
+        if (!$exprInterpreter->isDue($dateTime)) {
             $this->logger->info(\sprintf('Job "%s" [%s] will be skipped.', $jobName, $jobCronExpression->expression));
 
             return false;

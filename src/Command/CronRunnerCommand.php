@@ -26,6 +26,7 @@ final class CronRunnerCommand extends Command
         $this
             ->setDescription('Processes command schedule and runs commands according to configuration')
             ->addOption('lock', null, InputOption::VALUE_NONE, 'Prevents from running multiple instances')
+            ->addOption('execution_datetime', null, InputOption::VALUE_OPTIONAL, 'Set jobs execution datetime')
         ;
     }
 
@@ -41,13 +42,14 @@ final class CronRunnerCommand extends Command
             }
         }
 
-        $id = \time();
+        $dateTime = new \DateTimeImmutable();
 
-        $this->logger?->info(\sprintf('Running cron job [%d]', $id));
+        $executionDateTime = $input->getOption('execution_datetime');
+        if (!empty($executionDateTime)) {
+            $dateTime->setTimestamp(\strtotime($executionDateTime));
+        }
 
-        $this->runner->run($output);
-
-        $this->logger?->info(\sprintf('Cron job finished [%d]', $id));
+        $this->runner->run($dateTime, $output);
 
         if ($lockOthers) {
             $this->release();

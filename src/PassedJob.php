@@ -22,13 +22,14 @@ final class PassedJob
     public function __construct(
         string $name,
         CronJobResultStateEnum $state,
-        string $cronExpression
+        string $cronExpression,
+        \DateTimeImmutable $passedAt
     ) {
         $this->id = Uuid::uuid4();
         $this->name = $name;
         $this->state = $state;
         $this->cronExpression = $cronExpression;
-        $this->passedAt = new \DateTimeImmutable();
+        $this->passedAt = $passedAt;
     }
 
     public function getId(): UuidInterface
