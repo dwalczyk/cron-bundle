@@ -26,6 +26,8 @@ final class CronJobScheduler
             return false;
         }
 
+        print_r($dateTime);
+
         $exprInterpreter = new CronExpressionLib($jobCronExpression->expression);
 
         if (!$exprInterpreter->isDue($dateTime)) {
