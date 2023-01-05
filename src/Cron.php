@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Dawid\CronBundle;
 
 use Psr\Log\LoggerInterface;
-use Webmozart\Assert\Assert;
 
 final class Cron
 {
@@ -28,8 +27,6 @@ final class Cron
     {
         foreach ($job->getCronExpressions() as $cronExpression) {
             try {
-                Assert::isInstanceOf($cronExpression, CronExpression::class);
-
                 if ($this->scheduler->isAllowed($job->getName(), $cronExpression)) {
                     $job->run();
                 }
@@ -42,9 +39,12 @@ final class Cron
             } catch (\Throwable $e) {
                 $state = CronJobResultStateEnum::FAILED;
 
-                $this->logger->error(
-                    \sprintf('Job "%s" [%s] failed. Exception: %s', $job->getName(), $cronExpression->expression, $e->getMessage())
-                );
+                $this->logger->error(\sprintf(
+                    'Job "%s" [%s] failed. Exception: %s',
+                    $job->getName(),
+                    $cronExpression->expression,
+                    $e->getMessage()
+                ));
             }
 
             $passedJob = new PassedJob($job->getName(), $state, $cronExpression->expression);

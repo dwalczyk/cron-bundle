@@ -1,0 +1,25 @@
+<?php
+
+namespace Dawid\CronBundle;
+
+use Webmozart\Assert\Assert;
+
+final class CronExpressionCollection
+{
+    /**
+     * @param CronExpression[] $elements
+     */
+    public function __construct(
+        public array $elements
+    )
+    {
+        foreach ($this->elements as $element) {
+            Assert::isInstanceOf($element, CronExpression::class);
+        }
+    }
+
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->elements);
+    }
+}

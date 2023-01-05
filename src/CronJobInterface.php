@@ -8,10 +8,7 @@ interface CronJobInterface
 {
     public function run(): void;
 
-    /**
-     * @return CronExpression[]
-     */
-    public function getCronExpressions(): iterable;
+    public function getCronExpressions(): CronExpressionCollection;
 
     public function getName(): string;
 }
