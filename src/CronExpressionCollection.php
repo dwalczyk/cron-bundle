@@ -4,7 +4,7 @@ namespace Dawid\CronBundle;
 
 use Webmozart\Assert\Assert;
 
-final class CronExpressionCollection
+final class CronExpressionCollection implements \IteratorAggregate
 {
     /**
      * @param CronExpression[] $elements
