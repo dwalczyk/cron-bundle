@@ -9,7 +9,7 @@ jobs:
     steps:
       - run:
           name: Install system packages
-          command: apt-get update -y && apt-get install -y zip unzip git
+          command: apt-get update -y && apt-get install -y libzip-dev zip unzip git
       - run:
           name: Install PHP extensions
           command: docker-php-ext-install zip
