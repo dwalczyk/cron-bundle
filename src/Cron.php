@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dawid\CronBundle;
 
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 final class Cron
 {
@@ -16,35 +17,43 @@ final class Cron
     ) {
     }
 
-    public function run(): void
+    public function run(OutputInterface $output): void
     {
         foreach ($this->registry->all() as $job) {
-            $this->handleJob($job);
+            $this->handleJob($job, $output);
         }
     }
 
-    private function handleJob(CronJobInterface $job): void
+    private function handleJob(CronJobInterface $job, OutputInterface $output): void
     {
         foreach ($job->getCronExpressions() as $cronExpression) {
             try {
-                if ($this->scheduler->isAllowed($job->getName(), $cronExpression)) {
-                    $job->run();
+                if (!$this->scheduler->isAllowed($job->getName(), $cronExpression)) {
+                    $msg = \sprintf('Job "%s" [%s] not allowed by scheduler - skipped.', $job->getName(), $cronExpression->expression);
+                    $output->writeln(sprintf('<comment>%s</comment>', $msg));
+
+                    continue;
                 }
 
-                $state = CronJobResultStateEnum::SUCCESS;
+                $job->run();
 
-                $this->logger->info(
-                    \sprintf('Job "%s" [%s] executed successfully.', $job->getName(), $cronExpression->expression)
-                );
+                $state = CronJobResultStateEnum::SUCCESS;
+                $msg = \sprintf('Job "%s" [%s] executed successfully.', $job->getName(), $cronExpression->expression);
+
+                $this->logger->info($msg);
+                $output->writeln(sprintf('<info>%s</info>', $msg));
+
             } catch (\Throwable $e) {
                 $state = CronJobResultStateEnum::FAILED;
-
-                $this->logger->error(\sprintf(
-                    'Job "%s" [%s] failed. Exception: %s',
+                $msg = \sprintf(
+                    'Job "%s" [%s] failed. Exception: %s.',
                     $job->getName(),
                     $cronExpression->expression,
                     $e->getMessage()
-                ));
+                );
+
+                $this->logger->error($msg);
+                $output->writeln(sprintf('<error>%s</error>', $msg));
             }
 
             $passedJob = new PassedJob($job->getName(), $state, $cronExpression->expression);
