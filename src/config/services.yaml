@@ -1,4 +1,9 @@
 services:
+  _defaults:
+    autowire: false
+    autoconfigure: false
+    public: false
+
   Dawid\CronBundle\CronJobRegistry:
     class: 'Dawid\CronBundle\CronJobRegistry'
     arguments:
@@ -13,16 +18,16 @@ services:
 
   Dawid\CronBundle\CronJobScheduler:
     class: 'Dawid\CronBundle\CronJobScheduler'
-    public: false
     arguments:
-      $passedJobsRepository: '@Dawid\CronBundle\CronJobRegistryInterface'
+      $logger: '@logger'
 
   Dawid\CronBundle\Cron:
     class: 'Dawid\CronBundle\Cron'
-    public: false
     arguments:
       $scheduler: '@Dawid\CronBundle\CronJobScheduler'
       $registry: '@Dawid\CronBundle\CronJobRegistry'
+      $passedJobsRepository: '@Dawid\CronBundle\CronJobRegistryInterface'
+      $logger: '@logger'
 
   Dawid\CronBundle\Command\CronRunnerCommand:
     class: 'Dawid\CronBundle\Command\CronRunnerCommand'

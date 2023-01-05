@@ -2,7 +2,7 @@
 
 namespace Dawid\CronBundle;
 
-enum PassedJobResultEnum: string
+enum CronJobResultStateEnum: string
 {
     case SUCCESS = 'success';
     case FAILED = 'failed';

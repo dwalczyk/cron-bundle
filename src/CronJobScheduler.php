@@ -2,45 +2,38 @@
 
 namespace Dawid\CronBundle;
 
-use Cron\CronExpression;
-use Symfony\Component\Console\Output\OutputInterface;
+use Cron\CronExpression as CronExpressionLib;
+use Psr\Log\LoggerInterface;
 
 final class CronJobScheduler
 {
-    public function __construct(private readonly PassedJobsRepositoryInterface $passedJobsRepository)
+    public function __construct(
+        private readonly LoggerInterface $logger
+    )
     {
     }
 
-    public function isAllowed(CronJobInterface $job, OutputInterface $output): bool
+    public function isAllowed(string $jobName, CronExpression $jobCronExpression): bool
     {
-        foreach ($job->getCronExpressions() as $cronExpression) {
-            if (!CronExpression::isValidExpression($cronExpression)) {
-                $output->writeln(sprintf('<error>[%s] "%s" is not a valid crontab expression - cannot run</error>',
-                    $job->getName(), $cronExpression), OutputInterface::VERBOSITY_QUIET);
-
-                return false;
-            }
-
-            $exprInterpreter = new CronExpression($cronExpression);
-
-            dump($exprInterpreter->getPreviousRunDate());
-            dump($exprInterpreter->getNextRunDate());
-            dump($exprInterpreter->getNextRunDate(allowCurrentDate: true));
-
-            if (!$exprInterpreter->isDue()) {
-                $output->writeln(sprintf('%s will be skipped [%s]',
-                    $job->getName(),
-                    $cronExpression,
-                ));
-
-                return false;
-            }
-
-            $output->writeln(sprintf('%s will run [%s]',
-                $job->getName(),
-                $cronExpression
+        if (!CronExpressionLib::isValidExpression($jobCronExpression->expression)) {
+            $this->logger->error(sprintf(
+                '<error>Job "%s" [%s] is not a valid crontab expression - cannot run.</error>',
+                $jobName,
+                $jobCronExpression->expression
             ));
+
+            return false;
         }
+
+        $exprInterpreter = new CronExpressionLib($jobCronExpression->expression);
+
+        if (!$exprInterpreter->isDue()) {
+            $this->logger->info(sprintf('Job "%s" [%s] will be skipped.', $jobName, $jobCronExpression->expression));
+
+            return false;
+        }
+
+        $this->logger->info(sprintf('Job "%s" [%s] will run.', $jobName, $jobCronExpression->expression));
 
         return true;
     }

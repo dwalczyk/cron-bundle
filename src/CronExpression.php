@@ -2,11 +2,11 @@
 
 namespace Dawid\CronBundle;
 
-final class CronJobCronExpression
+final class CronExpression
 {
     public function __construct(
         public readonly string $expression
-    )
-    {
+    ) {
+
     }
 }

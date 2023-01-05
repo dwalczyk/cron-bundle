@@ -2,14 +2,12 @@
 
 namespace Dawid\CronBundle;
 
-use Symfony\Component\Console\Output\OutputInterface;
-
 interface CronJobInterface
 {
-    public function run(OutputInterface $output): CronJobResult;
+    public function run(): void;
 
     /**
-     * @return CronJobCronExpression[]
+     * @return CronExpression[]
      */
     public function getCronExpressions(): iterable;
 

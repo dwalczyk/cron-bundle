@@ -45,7 +45,7 @@ final class CronRunnerCommand extends Command
 
         $this->logger?->info(\sprintf('Running cron job [%d]', $id));
 
-        $this->runner->run($output);
+        $this->runner->run();
 
         $this->logger?->info(\sprintf('Cron job finished [%d]', $id));
 

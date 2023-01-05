@@ -4,5 +4,10 @@ namespace Dawid\CronBundle;
 
 interface PassedJobsRepositoryInterface
 {
-    public function getDateTimeOfLastPassedJobByName(string $name): ?\DateTimeInterface;
+    /**
+     * @return PassedJob[]
+     */
+    public function findAll(): iterable;
+
+    public function save(PassedJob $job): void;
 }
