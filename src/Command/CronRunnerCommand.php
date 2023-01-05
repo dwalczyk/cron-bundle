@@ -42,7 +42,7 @@ final class CronRunnerCommand extends Command
             }
         }
 
-        $dateTime = new \DateTimeImmutable();
+        $dateTime = new \DateTime();
 
         $executionDateTime = $input->getOption('execution_datetime');
         if (!empty($executionDateTime)) {
